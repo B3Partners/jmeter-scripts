@@ -1,0 +1,1902 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="GeoServer testplan" enabled="true">
+      <stringProp name="TestPlan.comments">geparametriseerd testplan om een map service te testen.
+initial en full extent worden later aangepast mbv. preProcessors.
+
+gisHost/gisPort:	gis server/poort
+wmsVersion:		WMS versie
+workSpace:		Geoserver workspace
+layer:		WMS layer to analyse
+bboxSize:		afmeting van adres zoom box (mapunits)
+width:		breedte opgevraagde plaatjes (px) bijv. 600
+height:		hoogte opgevraagde plaatjes (px) bijv. 600
+styles:		optionele style voor rendering
+srs:		mapservices SRS
+
+users: 		aantal users voor simulatie
+iteraties: 		aantal iteraties per user
+pauze:		minimum pauze tussen requests (millis)
+rampup:		rampup tijd voor threads (seconden)
+
+xxxRequestResponseTimeMillis:	response timeout voor request xxx  (millis)
+</stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="gisHost" elementType="Argument">
+            <stringProp name="Argument.name">gisHost</stringProp>
+            <stringProp name="Argument.value">flamingo5.b3p.nl</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="gisPort" elementType="Argument">
+            <stringProp name="Argument.name">gisPort</stringProp>
+            <stringProp name="Argument.value">443</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="wmsVersion" elementType="Argument">
+            <stringProp name="Argument.name">wmsVersion</stringProp>
+            <stringProp name="Argument.value">1.1.1</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="workSpace" elementType="Argument">
+            <stringProp name="Argument.name">workSpace</stringProp>
+            <stringProp name="Argument.value">Test_omgeving</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="layers" elementType="Argument">
+            <stringProp name="Argument.name">layers</stringProp>
+            <stringProp name="Argument.value">cbs_gemeente_2014</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="bboxSize" elementType="Argument">
+            <stringProp name="Argument.name">bboxSize</stringProp>
+            <stringProp name="Argument.value">5000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="width" elementType="Argument">
+            <stringProp name="Argument.name">width</stringProp>
+            <stringProp name="Argument.value">600</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="height" elementType="Argument">
+            <stringProp name="Argument.name">height</stringProp>
+            <stringProp name="Argument.value">600</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="styles" elementType="Argument">
+            <stringProp name="Argument.name">styles</stringProp>
+            <stringProp name="Argument.value"></stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="srs" elementType="Argument">
+            <stringProp name="Argument.name">srs</stringProp>
+            <stringProp name="Argument.value">EPSG:28992</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="users" elementType="Argument">
+            <stringProp name="Argument.name">users</stringProp>
+            <stringProp name="Argument.value">5</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="iteraties" elementType="Argument">
+            <stringProp name="Argument.name">iteraties</stringProp>
+            <stringProp name="Argument.value">50</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="pauze" elementType="Argument">
+            <stringProp name="Argument.name">pauze</stringProp>
+            <stringProp name="Argument.value">3000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="rampup" elementType="Argument">
+            <stringProp name="Argument.name">rampup</stringProp>
+            <stringProp name="Argument.value">90</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="mapRequestResponseTimeMillis" elementType="Argument">
+            <stringProp name="Argument.name">mapRequestResponseTimeMillis</stringProp>
+            <stringProp name="Argument.value">950</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="indentifyRequestResponseTimeMillis" elementType="Argument">
+            <stringProp name="Argument.name">indentifyRequestResponseTimeMillis</stringProp>
+            <stringProp name="Argument.value">650</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="metadataRequestResponseTimeMillis" elementType="Argument">
+            <stringProp name="Argument.name">metadataRequestResponseTimeMillis</stringProp>
+            <stringProp name="Argument.value">850</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - adressen" enabled="true">
+        <stringProp name="TestPlan.comments">lijst met te testen adressen en coordinaten</stringProp>
+        <stringProp name="delimiter">;</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="filename">./adressen.csv</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <stringProp name="shareMode">shareMode.group</stringProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="variableNames">postcode,huisnummer,x-coord,y-coord</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+      </CSVDataSet>
+      <hashTree/>
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="SERVICE" elementType="HTTPArgument">
+              <boolProp name="HTTPArgument.always_encode">false</boolProp>
+              <stringProp name="Argument.value">WMS</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              <stringProp name="Argument.name">SERVICE</stringProp>
+            </elementProp>
+            <elementProp name="VERSION" elementType="HTTPArgument">
+              <boolProp name="HTTPArgument.always_encode">false</boolProp>
+              <stringProp name="Argument.value">${wmsVersion}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              <stringProp name="Argument.name">VERSION</stringProp>
+            </elementProp>
+            <elementProp name="EXCEPTIONS" elementType="HTTPArgument">
+              <boolProp name="HTTPArgument.always_encode">true</boolProp>
+              <stringProp name="Argument.value">application/vnd.ogc.se_xml</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              <stringProp name="Argument.name">EXCEPTIONS</stringProp>
+            </elementProp>
+            <elementProp name="TRANSPARENT" elementType="HTTPArgument">
+              <boolProp name="HTTPArgument.always_encode">false</boolProp>
+              <stringProp name="Argument.value">true</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              <stringProp name="Argument.name">TRANSPARENT</stringProp>
+            </elementProp>
+          </collectionProp>
+        </elementProp>
+        <stringProp name="HTTPSampler.domain">${gisHost}</stringProp>
+        <stringProp name="HTTPSampler.port">${gisPort}</stringProp>
+        <stringProp name="HTTPSampler.protocol">https</stringProp>
+        <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+        <stringProp name="HTTPSampler.path">/geoserver/${workSpace}/ows</stringProp>
+        <stringProp name="TestPlan.comments">service default url</stringProp>
+        <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+        <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+        <stringProp name="HTTPSampler.response_timeout"></stringProp>
+      </ConfigTestElement>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="gebruiktest" enabled="true">
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">${iteraties}</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${users}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${rampup}</stringProp>
+        <longProp name="ThreadGroup.start_time">1229950689000</longProp>
+        <longProp name="ThreadGroup.end_time">1229950689000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+          <collectionProp name="CookieManager.cookies"/>
+          <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+          <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
+          <stringProp name="CookieManager.policy">default</stringProp>
+        </CookieManager>
+        <hashTree/>
+        <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
+          <stringProp name="ConstantTimer.delay">${pauze}</stringProp>
+          <stringProp name="RandomTimer.range">1500</stringProp>
+        </GaussianRandomTimer>
+        <hashTree/>
+        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="metadata opvragen" enabled="true"/>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="200 OK test" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">200 OK test</stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="metadataRequestResponseTimeMillis" enabled="true">
+            <stringProp name="DurationAssertion.duration">${metadataRequestResponseTimeMillis}</stringProp>
+          </DurationAssertion>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="opvragen XML capabilities" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="REQUEST" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">GetCapabilities</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">REQUEST</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${gisHost}</stringProp>
+            <stringProp name="HTTPSampler.port">${gisPort}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+            <stringProp name="HTTPSampler.path">/geoserver/${workSpace}/ows</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.implementation">Java</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="xml document returned" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="2123363107">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+</stringProp>
+              </collectionProp>
+              <stringProp name="TestPlan.comments">test voor xml document results</stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <XPath2Extractor guiclass="XPath2ExtractorGui" testclass="XPath2Extractor" testname="Capabilities parsing - minx" enabled="true">
+              <stringProp name="XPathExtractor2.default">0</stringProp>
+              <stringProp name="XPathExtractor2.refname">minx</stringProp>
+              <stringProp name="XPathExtractor2.matchNumber">1</stringProp>
+              <stringProp name="XPathExtractor2.xpathQuery">//Layer/Layer/BoundingBox[@SRS=&apos;EPSG:28992&apos;]/@minx</stringProp>
+              <stringProp name="XPathExtractor2.namespaces"></stringProp>
+            </XPath2Extractor>
+            <hashTree/>
+            <XPath2Extractor guiclass="XPath2ExtractorGui" testclass="XPath2Extractor" testname="Capabilities parsing - maxx" enabled="true">
+              <stringProp name="XPathExtractor2.default">0</stringProp>
+              <stringProp name="XPathExtractor2.refname">maxx</stringProp>
+              <stringProp name="XPathExtractor2.matchNumber">1</stringProp>
+              <stringProp name="XPathExtractor2.xpathQuery">//Layer/Layer/BoundingBox[@SRS=&apos;EPSG:28992&apos;]/@maxx</stringProp>
+              <stringProp name="XPathExtractor2.namespaces"></stringProp>
+            </XPath2Extractor>
+            <hashTree/>
+            <XPath2Extractor guiclass="XPath2ExtractorGui" testclass="XPath2Extractor" testname="Capabilities parsing - miny" enabled="true">
+              <stringProp name="XPathExtractor2.default">0</stringProp>
+              <stringProp name="XPathExtractor2.refname">miny</stringProp>
+              <stringProp name="XPathExtractor2.matchNumber">1</stringProp>
+              <stringProp name="XPathExtractor2.xpathQuery">//Layer/Layer/BoundingBox[@SRS=&apos;EPSG:28992&apos;]/@miny</stringProp>
+              <stringProp name="XPathExtractor2.namespaces"></stringProp>
+            </XPath2Extractor>
+            <hashTree/>
+            <XPath2Extractor guiclass="XPath2ExtractorGui" testclass="XPath2Extractor" testname="Capabilities parsing - maxy" enabled="true">
+              <stringProp name="XPathExtractor2.default">0</stringProp>
+              <stringProp name="XPathExtractor2.refname">maxy</stringProp>
+              <stringProp name="XPathExtractor2.matchNumber">1</stringProp>
+              <stringProp name="XPathExtractor2.xpathQuery">//Layer/Layer/BoundingBox[@SRS=&apos;EPSG:28992&apos;]/@maxy</stringProp>
+              <stringProp name="XPathExtractor2.namespaces"></stringProp>
+            </XPath2Extractor>
+            <hashTree/>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="initiele boundingbox bepalen aan de hand van capabilities" enabled="true">
+              <stringProp name="scriptLanguage">javascript</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">var xmin = parseFloat(vars.get(&apos;minx&apos;));
+var xmax = parseFloat(vars.get(&apos;maxx&apos;));
+var ymin = parseFloat(vars.get(&apos;miny&apos;));
+var ymax = parseFloat(vars.get(&apos;maxy&apos;));
+
+vars.put(&apos;dataBbox&apos;, xmin + &apos;,&apos; + ymin + &apos;,&apos; + xmax + &apos;,&apos;+ ymax);
+
+/*
+log.info(&apos;data bbox: &apos; + vars.get(&apos;dataBbox&apos;));
+log.info(&apos;minx: &apos; + xmin);
+log.info(&apos;maxx: &apos; + xmax);
+log.info(&apos;miny: &apos; + ymin);
+log.info(&apos;maxy: &apos; + ymax);
+*/
+
+var box = parseInt(vars.get(&apos;bboxSize&apos;),10);
+
+var x = xmax - xmin;
+var y = ymax - ymin;
+
+/*
+log.info(&apos;x: &apos; + x);
+log.info(&apos;y: &apos; + y);
+*/
+
+// begin met gebied 4x bboxSize 
+xmin = xmin + x/2 - box*2;
+xmax = xmax - x/2 + box*2;
+ymin = ymin + y/2 - box*2;
+ymax = ymax - y/2 + box*2;
+
+vars.put(&apos;bbox&apos;, xmin + &apos;,&apos; + ymin + &apos;,&apos; + xmax + &apos;,&apos;+ ymax);
+vars.put(&apos;minx1&apos;, xmin);
+vars.put(&apos;miny1&apos;, ymin);
+vars.put(&apos;maxx1&apos;, xmax);
+vars.put(&apos;maxy1&apos;, ymax);
+
+/*
+log.info(&apos;minx1: &apos; + xmin);
+log.info(&apos;maxx1: &apos; + xmax);
+log.info(&apos;miny1: &apos; + ymin);
+log.info(&apos;maxy1: &apos; + ymax);
+*/
+
+log.info(&apos;initiele bbox: &apos; + vars.get(&apos;bbox&apos;) + &apos; en WKT: POLYGON ((&apos;+ xmin + &apos; &apos; + ymin + &apos;, &apos; + xmax + &apos; &apos; + ymin +&apos;, &apos; + xmax + &apos; &apos; + ymax +&apos;, &apos; + xmin + &apos; &apos; + ymax +&apos;, &apos; + xmin + &apos; &apos; + ymin + &apos;))&apos; );
+</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="interactieve gebruiker sessie met featureinfo" enabled="true">
+          <stringProp name="TestPlan.comments">wordt eenmalig uitgevoerd per gebruiker.
+sessie met  kaart opvragen, in/uitzoomen en wat schuiven en featureinfo acties</stringProp>
+          <stringProp name="WhileController.condition">${continue}</stringProp>
+        </WhileController>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="application referred headers" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Host" elementType="Header">
+                <stringProp name="Header.name">Host</stringProp>
+                <stringProp name="Header.value">${gisHost}:${gisPort}</stringProp>
+              </elementProp>
+              <elementProp name="Accept-Language" elementType="Header">
+                <stringProp name="Header.name">Accept-Language</stringProp>
+                <stringProp name="Header.value">nl,en-gb;q=0.5</stringProp>
+              </elementProp>
+              <elementProp name="Accept" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="User-Agent" elementType="Header">
+                <stringProp name="Header.name">User-Agent</stringProp>
+                <stringProp name="Header.value">Mozilla/5.0 (Windows; U; Windows NT 5.0; nl; rv:1.9.0.5) Gecko/2008120122 Firefox/3.0.5 JMeter simulator</stringProp>
+              </elementProp>
+              <elementProp name="Accept-Encoding" elementType="Header">
+                <stringProp name="Header.name">Accept-Encoding</stringProp>
+                <stringProp name="Header.value">gzip, deflate</stringProp>
+              </elementProp>
+              <elementProp name="Pragma" elementType="Header">
+                <stringProp name="Header.name">Pragma</stringProp>
+                <stringProp name="Header.value">no-cache</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Referer</stringProp>
+                <stringProp name="Header.value">https://${gisHost}:${gisPort}/${workSpace}/ows</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="200 OK test" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">200 OK test</stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="initiele kaart opvraag" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="REQUEST" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">GetMap</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">REQUEST</stringProp>
+                </elementProp>
+                <elementProp name="LAYERS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">LAYERS</stringProp>
+                  <stringProp name="Argument.value">${workSpace}:${layers}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="BBOX" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">BBOX</stringProp>
+                  <stringProp name="Argument.value">${bbox}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="WIDTH" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${width}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">WIDTH</stringProp>
+                </elementProp>
+                <elementProp name="HEIGHT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${height}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">HEIGHT</stringProp>
+                </elementProp>
+                <elementProp name="FORMAT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">FORMAT</stringProp>
+                  <stringProp name="Argument.value">image/png</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="SRS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${srs}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">SRS</stringProp>
+                </elementProp>
+                <elementProp name="STYLES" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${styles}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">STYLES</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${gisHost}</stringProp>
+            <stringProp name="HTTPSampler.port">${gisPort}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/geoserver/${workSpace}/ows</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.implementation">Java</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">opvragen van hele kaart</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="test voor png" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1654885887">Content-Type: image/png</stringProp>
+              </collectionProp>
+              <stringProp name="TestPlan.comments">request is voor een png plaatje; dat moeten we ook terug krijgen</stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="mapRequestResponseTimeMillis" enabled="true">
+              <stringProp name="DurationAssertion.duration">${mapRequestResponseTimeMillis}</stringProp>
+            </DurationAssertion>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="schuiven (naar links onder)" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="REQUEST" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">GetMap</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">REQUEST</stringProp>
+                </elementProp>
+                <elementProp name="LAYERS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">LAYERS</stringProp>
+                  <stringProp name="Argument.value">${workSpace}:${layers}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="BBOX" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">BBOX</stringProp>
+                  <stringProp name="Argument.value">${bbox}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="WIDTH" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${width}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">WIDTH</stringProp>
+                </elementProp>
+                <elementProp name="HEIGHT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${height}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">HEIGHT</stringProp>
+                </elementProp>
+                <elementProp name="FORMAT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">FORMAT</stringProp>
+                  <stringProp name="Argument.value">image/png</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="SRS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${srs}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">SRS</stringProp>
+                </elementProp>
+                <elementProp name="STYLES" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${styles}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">STYLES</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${gisHost}</stringProp>
+            <stringProp name="HTTPSampler.port">${gisPort}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/geoserver/${workSpace}/ows</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.implementation">Java</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">opvragen kaart na een stukje opschuiven</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="test voor png" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1654885887">Content-Type: image/png</stringProp>
+              </collectionProp>
+              <stringProp name="TestPlan.comments">request is voor een png plaatje; dat moeten we ook terug krijgen</stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="mapRequestResponseTimeMillis" enabled="true">
+              <stringProp name="DurationAssertion.duration">${mapRequestResponseTimeMillis}</stringProp>
+            </DurationAssertion>
+            <hashTree/>
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="random opschuiven bepalen" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">var bboxSize = parseInt(vars.get(&apos;bboxSize&apos;),10);
+
+// minimaal bboxSize*2 opschuiven, random met factor tussen 1 en 2 
+var afstand = (1 + Math.random()) * bboxSize * 2;
+
+log.info(&apos;schuif afstand: &apos; + afstand);
+
+// opschuiven naar linksonder in RD
+var xmin = parseFloat(vars.get(&apos;minx1&apos;)) - afstand;
+var xmax = parseFloat(vars.get(&apos;maxx1&apos;)) - afstand;
+var ymin = parseFloat(vars.get(&apos;miny1&apos;)) - afstand;
+var ymax = parseFloat(vars.get(&apos;maxy1&apos;)) - afstand;
+
+/*
+log.info(&apos;minx: &apos; + xmin);
+log.info(&apos;maxx: &apos; + xmax);
+log.info(&apos;miny: &apos; + ymin);
+log.info(&apos;maxy: &apos; + ymax);
+*/
+
+vars.put(&apos;bbox&apos;, xmin + &apos;,&apos; + ymin + &apos;,&apos; + xmax + &apos;,&apos;+ ymax);
+vars.put(&apos;minx1&apos;, xmin);
+vars.put(&apos;miny1&apos;, ymin);
+vars.put(&apos;maxx1&apos;, xmax);
+vars.put(&apos;maxy1&apos;, ymax);
+
+/*
+log.info(&apos;zoomed minx: &apos; + vars.get(&apos;minx1&apos;));
+log.info(&apos;zoomed maxx: &apos; + vars.get(&apos;maxx1&apos;));
+log.info(&apos;zoomed miny: &apos; + vars.get(&apos;miny1&apos;));
+log.info(&apos;zoomed maxy: &apos; + vars.get(&apos;maxy1&apos;));
+*/
+log.info(&apos;bbox updater schuiven: &apos; + vars.get(&apos;bbox&apos;));
+</stringProp>
+              <stringProp name="scriptLanguage">javascript</stringProp>
+            </JSR223PreProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="zoom in" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="REQUEST" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">GetMap</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">REQUEST</stringProp>
+                </elementProp>
+                <elementProp name="LAYERS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">LAYERS</stringProp>
+                  <stringProp name="Argument.value">${workSpace}:${layers}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="BBOX" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">BBOX</stringProp>
+                  <stringProp name="Argument.value">${bbox}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="WIDTH" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${width}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">WIDTH</stringProp>
+                </elementProp>
+                <elementProp name="HEIGHT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${height}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">HEIGHT</stringProp>
+                </elementProp>
+                <elementProp name="FORMAT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">FORMAT</stringProp>
+                  <stringProp name="Argument.value">image/png</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="SRS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${srs}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">SRS</stringProp>
+                </elementProp>
+                <elementProp name="STYLES" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${styles}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">STYLES</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${gisHost}</stringProp>
+            <stringProp name="HTTPSampler.port">${gisPort}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/geoserver/${workSpace}/ows</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.implementation">Java</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">opvragen kaart na inzoomen</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="test voor png" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1654885887">Content-Type: image/png</stringProp>
+              </collectionProp>
+              <stringProp name="TestPlan.comments">request is voor een png plaatje; dat moeten we ook terug krijgen</stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="mapRequestResponseTimeMillis" enabled="true">
+              <stringProp name="DurationAssertion.duration">${mapRequestResponseTimeMillis}</stringProp>
+            </DurationAssertion>
+            <hashTree/>
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="random zoom bepalen" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">var bboxSize = parseFloat(vars.get(&apos;bboxSize&apos;));
+
+// random tussen 1 en 2
+var randomnumber = 1 + Math.random();
+var zM = Math.floor(randomnumber*bboxSize);
+
+log.info(&apos;zoom factor: &apos; + zM);
+
+// bbox verkleinen met zM
+var xmin = parseFloat(vars.get(&apos;minx1&apos;)) + zM;
+var xmax = parseFloat(vars.get(&apos;maxx1&apos;)) - zM;
+var ymin = parseFloat(vars.get(&apos;miny1&apos;)) + zM;
+var ymax = parseFloat(vars.get(&apos;maxy1&apos;)) - zM;
+
+vars.put(&apos;bbox&apos;, xmin + &apos;,&apos; + ymin + &apos;,&apos; + xmax + &apos;,&apos;+ ymax);
+vars.put(&apos;minx1&apos;, xmin);
+vars.put(&apos;miny1&apos;, ymin);
+vars.put(&apos;maxx1&apos;, xmax);
+vars.put(&apos;maxy1&apos;, ymax);
+
+/*
+log.info(&apos;zoomed minx: &apos; + vars.get(&apos;minx1&apos;));
+log.info(&apos;zoomed maxx: &apos; + vars.get(&apos;maxx1&apos;));
+log.info(&apos;zoomed miny: &apos; + vars.get(&apos;miny1&apos;));
+log.info(&apos;zoomed maxy: &apos; + vars.get(&apos;maxy1&apos;));
+*/
+log.info(&apos;bbox updater zoom in: &apos; + vars.get(&apos;bbox&apos;));
+</stringProp>
+              <stringProp name="scriptLanguage">javascript</stringProp>
+            </JSR223PreProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="featureinfo" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="REQUEST" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">GetFeatureInfo</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">REQUEST</stringProp>
+                </elementProp>
+                <elementProp name="LAYERS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">LAYERS</stringProp>
+                  <stringProp name="Argument.value">${workSpace}:${layers}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="BBOX" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">BBOX</stringProp>
+                  <stringProp name="Argument.value">${bbox}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="WIDTH" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${width}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">WIDTH</stringProp>
+                </elementProp>
+                <elementProp name="HEIGHT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${height}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">HEIGHT</stringProp>
+                </elementProp>
+                <elementProp name="FORMAT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">FORMAT</stringProp>
+                  <stringProp name="Argument.value">image/png</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="SRS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${srs}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">SRS</stringProp>
+                </elementProp>
+                <elementProp name="QUERY_LAYERS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${workSpace}:${layers}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">QUERY_LAYERS</stringProp>
+                </elementProp>
+                <elementProp name="INFO_FORMAT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">text/html</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">INFO_FORMAT</stringProp>
+                </elementProp>
+                <elementProp name="X" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${x}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">X</stringProp>
+                </elementProp>
+                <elementProp name="Y" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${y}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">Y</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${gisHost}</stringProp>
+            <stringProp name="HTTPSampler.port">${gisPort}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/geoserver/${workSpace}/ows</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.implementation">Java</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">opvragen van hele kaart</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="test voor text/html" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1857870375">Content-Type: text/html</stringProp>
+              </collectionProp>
+              <stringProp name="TestPlan.comments">request is voor een png plaatje; dat moeten we ook terug krijgen</stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="indentifyRequestResponseTimeMillis" enabled="true">
+              <stringProp name="DurationAssertion.duration">${indentifyRequestResponseTimeMillis}</stringProp>
+            </DurationAssertion>
+            <hashTree/>
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="bepaal X / Y" enabled="true">
+              <stringProp name="scriptLanguage">javascript</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">var x = Math.round(parseInt(vars.get(&apos;width&apos;),10)/2);
+var y = Math.round(parseInt(vars.get(&apos;height&apos;),10)/2);
+
+vars.put(&apos;x&apos;,x);
+vars.put(&apos;y&apos;,y);</stringProp>
+            </JSR223PreProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="schuiven (naar rechtsboven)" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="REQUEST" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">GetMap</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">REQUEST</stringProp>
+                </elementProp>
+                <elementProp name="LAYERS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">LAYERS</stringProp>
+                  <stringProp name="Argument.value">${workSpace}:${layers}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="BBOX" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">BBOX</stringProp>
+                  <stringProp name="Argument.value">${bbox}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="WIDTH" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${width}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">WIDTH</stringProp>
+                </elementProp>
+                <elementProp name="HEIGHT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${height}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">HEIGHT</stringProp>
+                </elementProp>
+                <elementProp name="FORMAT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">FORMAT</stringProp>
+                  <stringProp name="Argument.value">image/png</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="SRS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${srs}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">SRS</stringProp>
+                </elementProp>
+                <elementProp name="STYLES" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${styles}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">STYLES</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${gisHost}</stringProp>
+            <stringProp name="HTTPSampler.port">${gisPort}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/geoserver/${workSpace}/ows</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.implementation">Java</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">opvragen kaart na een stukje opschuiven</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="test voor png" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1654885887">Content-Type: image/png</stringProp>
+              </collectionProp>
+              <stringProp name="TestPlan.comments">request is voor een png plaatje; dat moeten we ook terug krijgen</stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="mapRequestResponseTimeMillis" enabled="true">
+              <stringProp name="DurationAssertion.duration">${mapRequestResponseTimeMillis}</stringProp>
+            </DurationAssertion>
+            <hashTree/>
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="random opschuiven bepalen" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">var bboxSize = parseInt(vars.get(&apos;bboxSize&apos;),10);
+
+// minimaal bboxSize*2 opschuiven, random met factor tussen 1 en 2 
+var afstand = (1 + Math.random()) * bboxSize * 2;
+
+log.info(&apos;schuif afstand: &apos; + afstand);
+
+// opschuiven naar rechtsboven in RD
+var xmin = parseFloat(vars.get(&apos;minx1&apos;)) + afstand;
+var xmax = parseFloat(vars.get(&apos;maxx1&apos;)) + afstand;
+var ymin = parseFloat(vars.get(&apos;miny1&apos;)) + afstand;
+var ymax = parseFloat(vars.get(&apos;maxy1&apos;)) + afstand;
+
+/*
+log.info(&apos;minx: &apos; + xmin);
+log.info(&apos;maxx: &apos; + xmax);
+log.info(&apos;miny: &apos; + ymin);
+log.info(&apos;maxy: &apos; + ymax);
+*/
+
+vars.put(&apos;bbox&apos;, xmin + &apos;,&apos; + ymin + &apos;,&apos; + xmax + &apos;,&apos;+ ymax);
+vars.put(&apos;minx1&apos;, xmin);
+vars.put(&apos;miny1&apos;, ymin);
+vars.put(&apos;maxx1&apos;, xmax);
+vars.put(&apos;maxy1&apos;, ymax);
+
+/*
+log.info(&apos;zoomed minx: &apos; + vars.get(&apos;minx1&apos;));
+log.info(&apos;zoomed maxx: &apos; + vars.get(&apos;maxx1&apos;));
+log.info(&apos;zoomed miny: &apos; + vars.get(&apos;miny1&apos;));
+log.info(&apos;zoomed maxy: &apos; + vars.get(&apos;maxy1&apos;));
+*/
+
+log.info(&apos;bbox updater schuiven: &apos; + vars.get(&apos;bbox&apos;));
+</stringProp>
+              <stringProp name="scriptLanguage">javascript</stringProp>
+            </JSR223PreProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="zoom uit" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="REQUEST" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">GetMap</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">REQUEST</stringProp>
+                </elementProp>
+                <elementProp name="LAYERS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">LAYERS</stringProp>
+                  <stringProp name="Argument.value">${workSpace}:${layers}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="BBOX" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">BBOX</stringProp>
+                  <stringProp name="Argument.value">${bbox}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="WIDTH" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${width}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">WIDTH</stringProp>
+                </elementProp>
+                <elementProp name="HEIGHT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${height}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">HEIGHT</stringProp>
+                </elementProp>
+                <elementProp name="FORMAT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">FORMAT</stringProp>
+                  <stringProp name="Argument.value">image/png</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="SRS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${srs}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">SRS</stringProp>
+                </elementProp>
+                <elementProp name="STYLES" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${styles}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">STYLES</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${gisHost}</stringProp>
+            <stringProp name="HTTPSampler.port">${gisPort}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/geoserver/${workSpace}/ows</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.implementation">Java</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">opvragen kaart na inzoomen</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="test voor png" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1654885887">Content-Type: image/png</stringProp>
+              </collectionProp>
+              <stringProp name="TestPlan.comments">request is voor een png plaatje; dat moeten we ook terug krijgen</stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="mapRequestResponseTimeMillis" enabled="true">
+              <stringProp name="DurationAssertion.duration">${mapRequestResponseTimeMillis}</stringProp>
+            </DurationAssertion>
+            <hashTree/>
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="random zoom bepalen" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">var bboxSize = parseFloat(vars.get(&apos;bboxSize&apos;));
+
+// random tussen 1 en 2
+var randomnumber = 1 + Math.random();
+var zM = Math.floor(randomnumber*bboxSize);
+
+log.info(&apos;zoom factor: &apos; + zM);
+
+// bbox vergroten met zM
+var xmin = parseFloat(vars.get(&apos;minx1&apos;)) - zM;
+var xmax = parseFloat(vars.get(&apos;maxx1&apos;)) + zM;
+var ymin = parseFloat(vars.get(&apos;miny1&apos;)) - zM;
+var ymax = parseFloat(vars.get(&apos;maxy1&apos;)) + zM;
+
+vars.put(&apos;bbox&apos;, xmin + &apos;,&apos; + ymin + &apos;,&apos; + xmax + &apos;,&apos;+ ymax);
+vars.put(&apos;minx1&apos;, xmin);
+vars.put(&apos;miny1&apos;, ymin);
+vars.put(&apos;maxx1&apos;, xmax);
+vars.put(&apos;maxy1&apos;, ymax);
+/*
+log.info(&apos;zoomed minx: &apos; + vars.get(&apos;minx1&apos;));
+log.info(&apos;zoomed maxx: &apos; + vars.get(&apos;maxx1&apos;));
+log.info(&apos;zoomed miny: &apos; + vars.get(&apos;miny1&apos;));
+log.info(&apos;zoomed maxy: &apos; + vars.get(&apos;maxy1&apos;));
+*/
+
+log.info(&apos;bbox updater zoom uit: &apos; + vars.get(&apos;bbox&apos;));
+</stringProp>
+              <stringProp name="scriptLanguage">javascript</stringProp>
+            </JSR223PreProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="zoom in" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="REQUEST" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">GetMap</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">REQUEST</stringProp>
+                </elementProp>
+                <elementProp name="LAYERS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">LAYERS</stringProp>
+                  <stringProp name="Argument.value">${workSpace}:${layers}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="BBOX" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">BBOX</stringProp>
+                  <stringProp name="Argument.value">${bbox}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="WIDTH" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${width}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">WIDTH</stringProp>
+                </elementProp>
+                <elementProp name="HEIGHT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${height}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">HEIGHT</stringProp>
+                </elementProp>
+                <elementProp name="FORMAT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">FORMAT</stringProp>
+                  <stringProp name="Argument.value">image/png</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="SRS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${srs}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">SRS</stringProp>
+                </elementProp>
+                <elementProp name="STYLES" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${styles}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">STYLES</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${gisHost}</stringProp>
+            <stringProp name="HTTPSampler.port">${gisPort}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/geoserver/${workSpace}/ows</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.implementation">Java</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">opvragen kaart na inzoomen</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="test voor png" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1654885887">Content-Type: image/png</stringProp>
+              </collectionProp>
+              <stringProp name="TestPlan.comments">request is voor een png plaatje; dat moeten we ook terug krijgen</stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="mapRequestResponseTimeMillis" enabled="true">
+              <stringProp name="DurationAssertion.duration">${mapRequestResponseTimeMillis}</stringProp>
+            </DurationAssertion>
+            <hashTree/>
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="random zoom bepalen" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">var bboxSize = parseFloat(vars.get(&apos;bboxSize&apos;));
+
+// random tussen 1 en 2
+var randomnumber = 1 + Math.random();
+var zM = Math.floor(randomnumber*bboxSize);
+
+log.info(&apos;zoom factor: &apos; + zM);
+
+// bbox verkleinen met zM
+var xmin = parseFloat(vars.get(&apos;minx1&apos;)) + zM;
+var xmax = parseFloat(vars.get(&apos;maxx1&apos;)) - zM;
+var ymin = parseFloat(vars.get(&apos;miny1&apos;)) + zM;
+var ymax = parseFloat(vars.get(&apos;maxy1&apos;)) - zM;
+
+vars.put(&apos;bbox&apos;, xmin + &apos;,&apos; + ymin + &apos;,&apos; + xmax + &apos;,&apos;+ ymax);
+vars.put(&apos;minx1&apos;, xmin);
+vars.put(&apos;miny1&apos;, ymin);
+vars.put(&apos;maxx1&apos;, xmax);
+vars.put(&apos;maxy1&apos;, ymax);
+/*
+log.info(&apos;zoomed minx: &apos; + vars.get(&apos;minx1&apos;));
+log.info(&apos;zoomed maxx: &apos; + vars.get(&apos;maxx1&apos;));
+log.info(&apos;zoomed miny: &apos; + vars.get(&apos;miny1&apos;));
+log.info(&apos;zoomed maxy: &apos; + vars.get(&apos;maxy1&apos;));
+*/
+
+log.info(&apos;bbox updater zoom in: &apos; + vars.get(&apos;bbox&apos;));
+</stringProp>
+              <stringProp name="scriptLanguage">javascript</stringProp>
+            </JSR223PreProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="random locatie" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="REQUEST" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">GetMap</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">REQUEST</stringProp>
+                </elementProp>
+                <elementProp name="LAYERS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">LAYERS</stringProp>
+                  <stringProp name="Argument.value">${workSpace}:${layers}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="BBOX" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">BBOX</stringProp>
+                  <stringProp name="Argument.value">${bbox}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="WIDTH" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${width}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">WIDTH</stringProp>
+                </elementProp>
+                <elementProp name="HEIGHT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${height}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">HEIGHT</stringProp>
+                </elementProp>
+                <elementProp name="FORMAT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">FORMAT</stringProp>
+                  <stringProp name="Argument.value">image/png</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="SRS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${srs}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">SRS</stringProp>
+                </elementProp>
+                <elementProp name="STYLES" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${styles}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">STYLES</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${gisHost}</stringProp>
+            <stringProp name="HTTPSampler.port">${gisPort}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/geoserver/${workSpace}/ows</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.implementation">Java</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">opvragen kaart aan de hand van de adressenlijst
+</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="test voor png" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1654885887">Content-Type: image/png</stringProp>
+              </collectionProp>
+              <stringProp name="TestPlan.comments">request is voor een png plaatje; dat moeten we ook terug krijgen</stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="mapRequestResponseTimeMillis" enabled="true">
+              <stringProp name="DurationAssertion.duration">${mapRequestResponseTimeMillis}</stringProp>
+            </DurationAssertion>
+            <hashTree/>
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="random locatie bepalen" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">var bboxSize = parseInt(vars.get(&apos;bboxSize&apos;),10);
+// random tussen 1 en 2
+var randomnumber = 1 + Math.random();
+var zM = Math.floor(randomnumber * bboxSize);
+
+log.info(&apos;bbox afmeting voor adres locatie: &apos; + zM);
+
+var x = parseInt(vars.get(&apos;x-coord&apos;),10);
+var y = parseInt(vars.get(&apos;y-coord&apos;),10);
+log.info(&apos;adres locatie postcode#huisnummer: &apos; + vars.get(&apos;postcode&apos;) + &apos;#&apos; + vars.get(&apos;huisnummer&apos;) + &apos;, x/y: &apos; + x + &apos;/&apos; + y);
+
+// bbox met grootte zM
+var xmin = x - zM/2;
+var xmax = x + zM/2;
+var ymin = y - zM/2;
+var ymax = y + zM/2;
+
+vars.put(&apos;bbox&apos;, xmin + &apos;,&apos; + ymin + &apos;,&apos; + xmax + &apos;,&apos;+ ymax);
+vars.put(&apos;minx1&apos;, xmin);
+vars.put(&apos;miny1&apos;, ymin);
+vars.put(&apos;maxx1&apos;, xmax);
+vars.put(&apos;maxy1&apos;, ymax);
+/*
+log.info(&apos;adres minx: &apos; + vars.get(&apos;minx1&apos;));
+log.info(&apos;adres maxx: &apos; + vars.get(&apos;maxx1&apos;));
+log.info(&apos;adres miny: &apos; + vars.get(&apos;miny1&apos;));
+log.info(&apos;adres maxy: &apos; + vars.get(&apos;maxy1&apos;));
+*/
+log.info(&apos;random adres bbox: &apos; + vars.get(&apos;bbox&apos;) + &apos; en WKT: POLYGON ((&apos;+ xmin + &apos; &apos; + ymin + &apos;, &apos; + xmax + &apos; &apos; + ymin +&apos;, &apos; + xmax + &apos; &apos; + ymax +&apos;, &apos; + xmin + &apos; &apos; + ymax +&apos;, &apos; + xmin + &apos; &apos; + ymin + &apos;))&apos; );
+</stringProp>
+              <stringProp name="scriptLanguage">javascript</stringProp>
+            </JSR223PreProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="featureinfo" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="REQUEST" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">GetFeatureInfo</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">REQUEST</stringProp>
+                </elementProp>
+                <elementProp name="LAYERS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">LAYERS</stringProp>
+                  <stringProp name="Argument.value">${workSpace}:${layers}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="BBOX" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">BBOX</stringProp>
+                  <stringProp name="Argument.value">${bbox}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="WIDTH" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${width}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">WIDTH</stringProp>
+                </elementProp>
+                <elementProp name="HEIGHT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${height}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">HEIGHT</stringProp>
+                </elementProp>
+                <elementProp name="FORMAT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">FORMAT</stringProp>
+                  <stringProp name="Argument.value">image/png</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="SRS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${srs}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">SRS</stringProp>
+                </elementProp>
+                <elementProp name="QUERY_LAYERS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${workSpace}:${layers}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">QUERY_LAYERS</stringProp>
+                </elementProp>
+                <elementProp name="INFO_FORMAT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">text/html</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">INFO_FORMAT</stringProp>
+                </elementProp>
+                <elementProp name="X" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${x}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">X</stringProp>
+                </elementProp>
+                <elementProp name="Y" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${y}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">Y</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${gisHost}</stringProp>
+            <stringProp name="HTTPSampler.port">${gisPort}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/geoserver/${workSpace}/ows</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.implementation">Java</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">opvragen van hele kaart</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="test voor text/html" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1857870375">Content-Type: text/html</stringProp>
+              </collectionProp>
+              <stringProp name="TestPlan.comments">request is voor een png plaatje; dat moeten we ook terug krijgen</stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="indentifyRequestResponseTimeMillis" enabled="true">
+              <stringProp name="DurationAssertion.duration">${indentifyRequestResponseTimeMillis}</stringProp>
+            </DurationAssertion>
+            <hashTree/>
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="bepaal X / Y" enabled="true">
+              <stringProp name="scriptLanguage">javascript</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">var x = Math.round(parseInt(vars.get(&apos;width&apos;),10)/2);
+var y = Math.round(parseInt(vars.get(&apos;height&apos;),10)/2);
+
+vars.put(&apos;x&apos;,x);
+vars.put(&apos;y&apos;,y);</stringProp>
+            </JSR223PreProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="schuiven (naar rechtsboven)" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="REQUEST" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">GetMap</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">REQUEST</stringProp>
+                </elementProp>
+                <elementProp name="LAYERS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">LAYERS</stringProp>
+                  <stringProp name="Argument.value">${workSpace}:${layers}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="BBOX" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">BBOX</stringProp>
+                  <stringProp name="Argument.value">${bbox}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="WIDTH" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${width}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">WIDTH</stringProp>
+                </elementProp>
+                <elementProp name="HEIGHT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${height}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">HEIGHT</stringProp>
+                </elementProp>
+                <elementProp name="FORMAT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">FORMAT</stringProp>
+                  <stringProp name="Argument.value">image/png</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="SRS" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${srs}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">SRS</stringProp>
+                </elementProp>
+                <elementProp name="STYLES" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">${styles}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">STYLES</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${gisHost}</stringProp>
+            <stringProp name="HTTPSampler.port">${gisPort}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/geoserver/${workSpace}/ows</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.implementation">Java</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">opvragen kaart na een stukje opschuiven</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="test voor png" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1654885887">Content-Type: image/png</stringProp>
+              </collectionProp>
+              <stringProp name="TestPlan.comments">request is voor een png plaatje; dat moeten we ook terug krijgen</stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="mapRequestResponseTimeMillis" enabled="true">
+              <stringProp name="DurationAssertion.duration">${mapRequestResponseTimeMillis}</stringProp>
+            </DurationAssertion>
+            <hashTree/>
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="random opschuiven bepalen" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">var bboxSize = parseInt(vars.get(&apos;bboxSize&apos;),10);
+
+// minimaal bboxSize*2 opschuiven, random met factor tussen 1 en 2 
+var afstand = (1 + Math.random()) * bboxSize * 2;
+
+log.info(&apos;schuif afstand: &apos; + afstand);
+
+// opschuiven naar rechtsboven in RD
+var xmin = parseFloat(vars.get(&apos;minx1&apos;)) + afstand;
+var xmax = parseFloat(vars.get(&apos;maxx1&apos;)) + afstand;
+var ymin = parseFloat(vars.get(&apos;miny1&apos;)) + afstand;
+var ymax = parseFloat(vars.get(&apos;maxy1&apos;)) + afstand;
+
+/*
+log.info(&apos;minx: &apos; + xmin);
+log.info(&apos;maxx: &apos; + xmax);
+log.info(&apos;miny: &apos; + ymin);
+log.info(&apos;maxy: &apos; + ymax);
+*/
+
+vars.put(&apos;bbox&apos;, xmin + &apos;,&apos; + ymin + &apos;,&apos; + xmax + &apos;,&apos;+ ymax);
+vars.put(&apos;minx1&apos;, xmin);
+vars.put(&apos;miny1&apos;, ymin);
+vars.put(&apos;maxx1&apos;, xmax);
+vars.put(&apos;maxy1&apos;, ymax);
+
+/*
+log.info(&apos;zoomed minx: &apos; + vars.get(&apos;minx1&apos;));
+log.info(&apos;zoomed maxx: &apos; + vars.get(&apos;maxx1&apos;));
+log.info(&apos;zoomed miny: &apos; + vars.get(&apos;miny1&apos;));
+log.info(&apos;zoomed maxy: &apos; + vars.get(&apos;maxy1&apos;));
+*/
+log.info(&apos;bbox updater schuiven: &apos; + vars.get(&apos;bbox&apos;));
+</stringProp>
+              <stringProp name="scriptLanguage">javascript</stringProp>
+            </JSR223PreProcessor>
+            <hashTree/>
+            <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="cycle counter" enabled="true">
+              <stringProp name="CounterConfig.start">0</stringProp>
+              <stringProp name="CounterConfig.end">${iteraties}</stringProp>
+              <stringProp name="CounterConfig.incr">1</stringProp>
+              <stringProp name="CounterConfig.name">cycle</stringProp>
+              <stringProp name="CounterConfig.format"></stringProp>
+              <boolProp name="CounterConfig.per_user">true</boolProp>
+              <boolProp name="CounterConfig.reset_on_tg_iteration">true</boolProp>
+            </CounterConfig>
+            <hashTree/>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Eind van deze run" enabled="true">
+              <stringProp name="scriptLanguage">javascript</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">var done = parseInt(vars.get(&apos;cycle&apos;),10) == parseInt(vars.get(&apos;iteraties&apos;),10);
+
+log.info(&apos;done?: &apos; + done);
+
+vars.put(&apos;continue&apos;, !done);</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>true</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+          <boolProp name="useGroupName">true</boolProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>true</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>true</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>true</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>true</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+          <boolProp name="useGroupName">true</boolProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate response time" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>true</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
